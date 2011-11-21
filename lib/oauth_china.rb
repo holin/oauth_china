@@ -30,7 +30,7 @@ module OauthChina
       end
     end
 
-    #每次认证的唯一标志
+    #
     def oauth_token
       request_token.params[:oauth_token]
     end
@@ -77,7 +77,7 @@ module OauthChina
       request_token.authorize_url(:oauth_callback => URI.encode(_callback))
     end
 
-    #QQ和新浪OAuth需要verifier参数，豆瓣不需要
+    # 
     def authorize(options = {})
       return unless self.access_token.nil?
       token = self.request_token.get_access_token(options)

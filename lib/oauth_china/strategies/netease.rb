@@ -4,7 +4,7 @@ module OauthChina
 
     def initialize(*args)
       #fuck 163
-      #这个authorize path不是authorize，是authenticate呀！！！真变态！
+      # 
       self.consumer_options = {
         :site               => 'http://api.t.163.com',
         :request_token_path => '/oauth/request_token',
@@ -30,12 +30,8 @@ module OauthChina
     def add_status(content, options = {})
       options.merge!(:status => content)
       self.post("http://api.t.163.com/statuses/update.json", options)
-    end
-
-    #网易微博发送带图片的微博需要两个步骤：
-    #1.利用上传图片接口上传图片，并取得返回的image url
-    #2.把取来的image url放到微博的内容中，利用发微博接口发送微博。
-    #3.注意：如果把站外图片链接放到微博里发送不会在web页面中显示
+    end 
+    
     def upload_image(content, image_path, options = {})
       options = options.merge!(:pic => File.open(image_path, "rb")).to_options
       image_url = parse_image_url(just_upload_image(image_path))

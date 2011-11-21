@@ -33,7 +33,7 @@ module OauthChina
       params
     end
 
-    #腾讯的nonce值必须32位随机字符串啊！
+    # 
     def nonce
       Base64.encode64(OpenSSL::Random.random_bytes(32)).gsub(/\W/, '')[0, 32]
     end

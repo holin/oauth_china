@@ -3,7 +3,7 @@ module OauthChina
   class Sohu < OauthChina::OAuth
 
     def initialize(*args)
-      #搜狐微博的OAUTH 只支持将OAuth的认证参数放在HTTP的头部中。而且不可以带realm参数
+      # 
       self.consumer_options = {
         :site               => 'http://api.t.sohu.com',
         :scheme             => :header,

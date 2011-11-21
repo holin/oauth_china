@@ -3,7 +3,7 @@ module OauthChina
   module Upload
    
     #NOTICE：
-    #各个微博字段名可能不统一
+    # 
     def upload(url, options)
       url  = URI.parse(url)
       http = Net::HTTP.new(url.host, url.port)
@@ -16,7 +16,7 @@ module OauthChina
     end
     
     #NOTICE：
-    #各个微博字段名可能不统一
+    # 
     def qq_upload(_url, options)
       url  = URI.parse(_url)
       http = Net::HTTP.new(url.host, url.port)
@@ -46,14 +46,14 @@ module OauthChina
       http.request(req)
     end
 
-    #图片不参与签名
+    # 
     def sign_without_pic_field(req, access_token, options)
       req.set_form_data(params_without_pic_field(options))
       self.consumer.sign!(req, access_token, params_without_pic_field(options))
       req
     end
 
-    #mutipart编码：http://www.ietf.org/rfc/rfc1867.txt
+    # http://www.ietf.org/rfc/rfc1867.txt
     def set_multipart_field(req, params)
       multipart_post = Multipart::MultipartPost.new
       multipart_post.set_form_data(req, params)
