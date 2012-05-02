@@ -48,8 +48,8 @@ module OauthChina
       body = self.get("http://api.t.sina.com.cn/statuses/user_timeline.json?user_id=#{id}&since_id=#{since_id}").body 
     end
 
-    def comments(id)  
-      body = self.get("http://api.t.sina.com.cn/statuses/comments.json?id=#{id}&count=200").body 
+    def comments(id, count = 200)  
+      body = self.get("http://api.t.sina.com.cn/statuses/comments.json?id=#{id}&count=#{count}").body 
     end
     
     def friends_v2(uid, cursor = -1)  
