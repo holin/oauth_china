@@ -30,6 +30,11 @@ module OauthChina
       self.post("http://api.t.sina.com.cn/statuses/update.json", options)
     end
 
+    def comment(content, id, options = {})
+      options.merge!(:comment => content, :id => id)
+      self.post("http://api.t.sina.com.cn/statuses/comment.json", options)
+    end
+
     def friends(id, cursor = -1)  
       body = self.get("http://api.t.sina.com.cn/statuses/friends/#{id}.json?cursor=#{cursor}&count=200").body
       
@@ -37,6 +42,14 @@ module OauthChina
     
     def user_info(id)  
       body = self.get("http://api.t.sina.com.cn/users/show/#{id}.json").body 
+    end
+
+    def user_timeline(id, since_id = 0)  
+      body = self.get("http://api.t.sina.com.cn/statuses/user_timeline.json?user_id=#{id}&since_id=#{since_id}").body 
+    end
+
+    def comments(id)  
+      body = self.get("http://api.t.sina.com.cn/statuses/comments.json?id=#{id}&count=200").body 
     end
     
     def friends_v2(uid, cursor = -1)  
